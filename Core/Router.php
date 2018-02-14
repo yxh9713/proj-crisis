@@ -69,6 +69,7 @@ class Router
     {
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $url, $matches)) {
+
                 // Get named capture group values
                 foreach ($matches as $key => $match) {
                     if (is_string($key)) {
@@ -110,7 +111,7 @@ class Router
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
             $controller = $this->getNamespace() . $controller;
-
+// var_dump( $controller, $this->params);
             if (class_exists($controller)) {
                 $controller_object = new $controller($this->params);
 

@@ -29,7 +29,7 @@
       </div>
       <div class="col-md-6">
         <label for="date">Date</label>
-        <input type="text" class="form-control date" id="date" name="date" value="<?php echo $event['date']; ?>">
+        <input type="text" class="form-control date" id="date<?php echo $event['id']; ?>" name="date<?php echo $event['id']; ?>" value="<?php echo $event['date']; ?>" />
       </div>
       <div class="col-md-12 mt-1">
         <label for="description">Description</label>

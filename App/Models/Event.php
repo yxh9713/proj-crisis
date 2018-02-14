@@ -34,7 +34,7 @@ class Event extends \Core\Model
         SELECT events.id, events.subhead, events.date, events.description 
         FROM events 
         WHERE country_id = :country
-        ORDER BY events.date
+        ORDER BY events.date DESC
       ');
       $stmt->bindParam(':country', $country);
       $stmt->execute();

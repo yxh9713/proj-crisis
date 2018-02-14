@@ -26,7 +26,7 @@
       </div>
       <div class="form-group">
         <label for="date">Date</label>
-        <input type="text" class="form-control date" id="date" name="date">
+        <input type="text" class="form-control date" id="date" name="date" required />
       </div>
       <div class="form-group">
         <label for="description">Description</label>

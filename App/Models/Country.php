@@ -25,8 +25,11 @@ class Country extends \Core\Model
     try {
       $db = static::getDB();
       $stmt = $db->prepare('
-        SELECT * FROM country_category ORDER BY id
+        SELECT a.* FROM country_category a 
+        INNER JOIN (SELECT DISTINCT country_name.country_category_id FROM country_name) b 
+        ON a.id = b.country_category_id ORDER BY a.id
       ');
+
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -49,6 +52,23 @@ class Country extends \Core\Model
       $stmt->bindParam(':category', $category);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public static function getCountryById($id)
+  {    
+    try {
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        SELECT country_name.id, country_name.name 
+        FROM country_name 
+        WHERE country_name.id = :id
+      ');
+      $stmt->bindParam(':id', $id);
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
@@ -145,6 +165,24 @@ class Country extends \Core\Model
       $stmt->bindParam(':category', $category);
       $stmt->execute();
       return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public static function getNav()
+  {
+    try {
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        SELECT country_category.category, country_name.id, country_name.name, country_name.country_category_id 
+        FROM country_name 
+        LEFT JOIN country_category 
+        ON country_name.country_category_id = country_category.id
+        ORDER BY country_name.country_category_id, country_name.name
+      ');
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       echo $e->getMessage();
     }

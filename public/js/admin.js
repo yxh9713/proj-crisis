@@ -115,7 +115,7 @@ $(document).ready(function () {
     var data = {
       id: $field.attr('ref'),
       subhead: $field.find("input[name=subhead]").val(),
-      date: $field.find("input[name=date]").val(),
+      date: $field.find(".date").val(),
       description: $field.find("textarea[name=description]").val(),
       country: $("#country option:selected").val()
     }

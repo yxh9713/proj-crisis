@@ -93,7 +93,7 @@ abstract class Controller
         return json_encode(array(
             'status' => $code < 300, // success or not?
             'message' => $message
-            ));
+        ));
     }
 
 

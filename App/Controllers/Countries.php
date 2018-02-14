@@ -4,14 +4,16 @@ namespace App\Controllers;
 
 use \Core\View;
 use App\Models\Country;
-/**
- * Home controller
- *
- * PHP version 5.4
- */
-class Home extends \Core\Controller
+use App\Models\Event;
+
+class Countries extends \Core\Controller
 {
-    protected $renderData = [];
+    private $country_id;
+  
+    public function __construct ( $params ) {
+        $this->country_id = isset($params['id']) ? strtoupper($params['id']) : 1;
+    }
+
     /**
      * Before filter
      *
@@ -21,7 +23,6 @@ class Home extends \Core\Controller
     {
         $this->renderData['navNames'] = Country::getNav();
         $this->renderData['navCategories']= Country::getAllCategories();
-        //echo "(before) ";
         //return false;
     }
 
@@ -42,41 +43,22 @@ class Home extends \Core\Controller
      */
     public function indexAction()
     {
-        View::render('Home/index.php', $this->renderData);
-    }
-
-    public function aboutAction()
-    {
-        View::render('Home/about.php', $this->renderData);
-    }
-
-    public function discussionAction()
-    {
-        $this->renderData['title'] = 'Discussion';
-        View::render('Home/discussion.php', $this->renderData);
-    }
-
-    public function contactAction()
-    {
-        View::render('Home/about.php', $this->renderData);
     }
 
     public function postAction()
     {        
         echo 'post';
+    }
 
-        $cs = Country::getAllCountries();
-
-        foreach($cs as $c) {
-            $n =  strtolower($c['name']);
-            $n = preg_replace("/\([^)]+\)/","",$n);
-            echo $c['id'] .'-'. $n . '<br />';
-        }
-        
+    public function eventAction()
+    {
+        $this->renderData['country'] = Country::getCountryById($this->country_id);
+        $this->renderData['events'] = Event::getEventsByCountry($this->country_id);
+        $this->renderData['id'] = $this->country_id;
+        View::render('Home/events.php', $this->renderData);
         // View::renderTemplate('Home/index.html', [
         //     'name'    => 'Dave',
         //     'colours' => ['red', 'green', 'blue']
         // ]);
     }
-
 }
