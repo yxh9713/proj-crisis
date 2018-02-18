@@ -43,6 +43,35 @@
             <h2></br>Comments</h2>
           </header>
 
+          <div>
+            <ul class="comments">
+            <?php foreach ($comments['data'] as $comment): ?>
+              <li>
+                <div class="published"><?php echo date('m/d/Y', strtotime($comment['create_at'])); ?></div>
+                <address class="vcard author">
+                  By <?php echo $comment['name']; ?>
+                </address>
+                <div class="entry-content">
+                  <?php echo nl2br(htmlspecialchars($comment['comment'])); ?>
+                </div>
+
+              </li>
+            <?php endforeach; ?>
+            </ul>
+          </div>
+
+          <div>
+            <ul class="pagination">
+              <?php 
+                for($i = 1 ; $i <= $comments['total'] ;$i++) {
+                  $className = ($i == $page) ? 'active' : '';
+                  echo '<li><a href="/discussion/page/'.$i.'" class="'.$className.'">' . $i . '</a></li>';
+                }
+              ?>
+            </ul>
+          </div>
+
+
           <div id="respond">
           <h3>Leave a Comment</h3>
             <form action="/discussion/post" method="post" id="commentform">
@@ -55,10 +84,8 @@
               <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
               <input name="submit" type="submit" value="Submit" />
             </form>
+            <div id="alert" class="alert"></div>
           </div>
-
-
-
         </div>
       </div>
     </div>

@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use \Core\View;
 use App\Models\Country;
+use App\Models\Event;
+use App\Models\MDiscussion;
 /**
  * Home controller
  *
@@ -12,15 +14,17 @@ use App\Models\Country;
 class Home extends \Core\Controller
 {
     protected $renderData = [];
-    /**
-     * Before filter
-     *
-     * @return void
-     */
+    protected $params;
+
+    public function __construct ( $params ) {
+        $this->params = $params;
+    }
+
     protected function before()
     {
         $this->renderData['navNames'] = Country::getNav();
         $this->renderData['navCategories']= Country::getAllCategories();
+        $this->renderData['navSubheads']= Event::getEligibleSubheads();
         //echo "(before) ";
         //return false;
     }
@@ -53,18 +57,19 @@ class Home extends \Core\Controller
     public function discussionAction()
     {
         $this->renderData['title'] = 'Discussion';
+        $this->renderData['page'] = $this->params['page'];
+        $this->renderData['comments'] = MDiscussion::getComments($this->params['page']);
         View::render('Home/discussion.php', $this->renderData);
     }
 
     public function contactAction()
     {
-        View::render('Home/about.php', $this->renderData);
+        $this->renderData['title'] = 'Contact';
+        View::render('Home/contact.php', $this->renderData);
     }
 
     public function postAction()
-    {        
-        echo 'post';
-
+    {
         $cs = Country::getAllCountries();
 
         foreach($cs as $c) {

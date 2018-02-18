@@ -23,6 +23,7 @@ class Countries extends \Core\Controller
     {
         $this->renderData['navNames'] = Country::getNav();
         $this->renderData['navCategories']= Country::getAllCategories();
+        $this->renderData['navSubheads']= Event::getEligibleSubheads();
         //return false;
     }
 

@@ -19,5 +19,11 @@
         <li><a href="/admin/events/1/edit">Edit</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#DiscussionSubMenu">Discussion</a>
+      <ul class="list-unstyled" id="DiscussionSubMenu">
+        <li><a href="/admin/discussion/edit">Edit</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>

@@ -24,7 +24,7 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('about', ['controller' => 'Home', 'action' => 'about']);
-$router->add('discussion', ['controller' => 'Home', 'action' => 'discussion']);
+$router->add('discussion/page/{page:\d+}', ['controller' => 'Home', 'action' => 'discussion']);
 $router->add('contact', ['controller' => 'Home', 'action' => 'contact']);
 // $router->add('shop/post/{page:\d+}', ['controller' => 'Shop', 'action' => 'post']);
 $router->add('{controller}/{action}');

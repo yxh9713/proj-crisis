@@ -36,7 +36,12 @@
         <textarea class="form-control" id="description" name="description" rows="3"><?php echo $event['description']; ?></textarea>
       </div>
       <div class="btn-group col-md-6 mt-1" role="group">
-        <button type="button" class="btn btn-default btn-save-event">Save</button>
+        <?php if($event['on_menu'] == '0') : ?>
+          <button type="button" ref="1" class="btn btn-info btn-show-subhead">Show Subhead on Menu</button>
+        <?php else : ?>
+          <button type="button" ref="0" class="btn btn-info btn-show-subhead">Remove Subhead on Menu</button>
+        <?php endif; ?>
+        <button type="button" class="btn btn-success btn-save-event">Save</button>
         <button type="button" class="btn btn-danger btn-delete-event">Delete</button>
       </div>
     </div>

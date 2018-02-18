@@ -30,15 +30,12 @@ class MDiscussion extends \Core\Model
     }
 
     try {
-    //   foreach($params as $param) {
-    //     var_dump($param);
-    //   }
       $db = static::getDB();
       $stmt = $db->prepare('
         INSERT INTO comments (name, email, comment) 
         VALUES (:name, :email, :comment)
       ');
-      $stmt->bindParam(':name', $params['name']);
+      $stmt->bindParam(':name', trim($params['comment_author']));
       $stmt->bindParam(':email', trim($params['email']));
       $stmt->bindParam(':comment', $params['comment']);
       $stmt->execute();
@@ -54,15 +51,85 @@ class MDiscussion extends \Core\Model
     }
   }
 
-
-  public static function getAll()
+  public static function getComments($page)
   {
-  
     try {
+      $begin = (isset($page) ? $page : 1);
+      $per_page = 5;
+      $limit = ($begin - 1) * $per_page;
 
-        
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        SELECT * FROM comments
+        WHERE `approve` = 1 AND `delete` = 0
+        ORDER BY create_at DESC
+        LIMIT :limit, :offset;
+      ');
+      $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+      $stmt->bindValue(':offset', (int) $per_page, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $results = array(
+        "data" => $stmt->fetchAll(PDO::FETCH_ASSOC),
+        "total" => ceil($db->query('SELECT count(*) FROM comments WHERE approve = 1')->fetchColumn() / $per_page),
+      );
+
+      return $results;
     } catch (PDOException $e) {
-        echo $e->getMessage();
+      return array(
+        "data" => null
+      );
     }
   }
+
+  public static function getNotApprovedComments()
+  {
+    try {
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        SELECT * FROM comments
+        WHERE `approve` = 0 AND `delete` = 0
+        ORDER BY create_at DESC
+      ');
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+      return $e->getMessage();
+    }
+  }
+
+  public static function updateCommentPermission($id)
+  {
+    try {
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        UPDATE comments
+        SET approve = 1
+        WHERE id = :id
+      ');
+      $stmt->bindParam(':id', $id);
+      return $stmt->execute();
+    } catch (PDOException $e) {
+      return $e->getMessage();
+    }
+  }
+
+  public static function deleteComment($id)
+  {
+    try {
+      $db = static::getDB();
+      $stmt = $db->prepare('
+        UPDATE comments
+        SET `delete` = 1
+        WHERE id = :id
+      ');
+      $stmt->bindParam(':id', $id);
+      return $stmt->execute();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+
 }

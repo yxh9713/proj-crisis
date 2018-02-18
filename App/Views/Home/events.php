@@ -48,7 +48,7 @@
     ?>
 
     <?php if($event['subhead']) : ?>
-      <div class="border" id="<?php echo $date; ?>"></div>
+      <div class="border" id="<?php echo $event['id']; ?>"></div>
       <br /><br />
       <div class="grid grid-pad">
         <!-- BLANK SPACE -->
@@ -59,7 +59,6 @@
           <div class="content">
             <dt>
               <div class="large-indent"><?php echo $date; ?></div>
-              
             </dt>
             <dd>
               <div class="facts">
@@ -81,7 +80,6 @@
         <!-- FACTS -->
         <div class="col-1-5 mobile-col-1-1">
           <div class="content">
-            
             <dt><div class="date-indent"><?php echo $date; ?></div></dt>
             <dd><div class="facts"><?php echo htmlspecialchars($event['description']); ?></dd>     
           </div>           

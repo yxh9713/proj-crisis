@@ -36,7 +36,26 @@ $(document).ready(function() {
    */
   $("#commentform").on("submit", function(e) {
     e.preventDefault();
-    console.log('dis form', $(this).serialize());
+    var self = $(this);
+    var data = $(this).serialize();
+    $.ajax({
+      url: "/discussion/post",
+      type: "POST",
+      cache: false,
+      data: data,
+      error: function(error) {
+        $("#alert").text("Error: Fail to submit comment.").delay(3000).fadeOut();
+      },
+      success: function(response) {
+        if(response.status) {
+          self.find("input[type=text],input[type=email], textarea").val('');
+          $("#alert").text("Your comment has been submitted.").show().delay(3000).fadeOut();
+        } else {
+          $("#alert").text("Error: Fail to submit comment.").show().delay(3000).fadeOut();
+        }
+      }
+    });
+
   });
 
 

@@ -69,4 +69,10 @@ class Events extends \Core\Controller
     echo ($result) ? $this->json_response('success', 200) : $this->json_response('fail', 400);
   }
 
+  public function updateonmenuAction()
+  {
+    $result = Event::updateOnMenuStatus($_POST);
+    echo ($result) ? $this->json_response('success', 200) : $this->json_response('fail', 400);
+  }
+
 }

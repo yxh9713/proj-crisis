@@ -101,11 +101,8 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 #add-comment input[type='text'],
 #add-comment input[type='email'],
 #add-comment input[type='url'] {float: left; width: 200px;}
-
 #add-comment textarea {float: left; height: 150px; width: 495px;}
-
 #add-comment p.req {clear: both; margin: 0 .5em 1em 0; text-align: right;}
-
 #add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 #add-comment * {margin-bottom: .5em;}
 
@@ -136,7 +133,6 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
   margin-bottom: 10px;
   display: block;
   width: 100%;
-  
   border: 1px solid #CCC;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -144,7 +140,6 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  
   line-height: 1.4em;
 }
 
@@ -159,3 +154,50 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 }
 
 .post-info {padding-bottom: 10px;}
+
+
+.comments{
+	list-style-type: none;
+}
+
+.comments li{
+	margin: 2px 0 5px 0;
+	padding: 15px 0 10px 0;
+	border-bottom: 1px solid #999;
+}
+
+.comments .published, .comments .author{
+	margin: 0 0 10px 0;
+	font-size: 0.8em;
+}
+
+.comments .entry-content{
+	line-height: 1.3em;
+	padding: 10px 0 10px 0;
+}
+
+.alert{
+	margin: 10px 0;
+}
+
+.pagination li{
+    display: inline-block;
+    list-style-type: none;
+}
+
+.pagination a {
+    color: #333;
+    padding: 4px 8px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #F00;
+    color: #EEE;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+
+
+

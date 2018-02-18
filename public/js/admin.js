@@ -90,6 +90,8 @@ $(document).ready(function () {
 
   $("#new-event").on("submit", function(e) {
     e.preventDefault();
+    // var data = $("#new-event").serializeArray();
+    // var on_menu = $(this).find("input[name=on_menu]").val();
 
     $.ajax({
       url: "/admin/events/post",
@@ -161,7 +163,97 @@ $(document).ready(function () {
 
   $("#country").on("change", function() {
     window.location.replace('/admin/events/'+$(this).val()+'/edit');
-  })
+  });
+
+
+  $(".btn-approve-comment").on("click", function() {
+    var id = $(this).attr('ref');
+    $.ajax({
+      url: "/admin/discussion/update",
+      type: "POST",
+      cache: false,
+      data: {id:id},
+      error: function(error) {
+        popAlert('Fail to approve the comment.', 'alert-danger'); 
+      },
+      success: function(response) {
+        if(response.status) {
+          popAlert('The comment has been approved.', 'alert-success');
+
+          $("#comment-"+id)
+          .find('td')
+          .wrapInner('<div style="display: block;" />')
+          .parent()
+          .find('td > div')
+          .slideUp(700, function(){
+            $(this).parent().parent().remove();
+          });
+        } else {
+          popAlert('Fail to approve the comment.', 'alert-danger');
+        }
+      }
+    });
+  });
+
+  $(".btn-delete-comment").on("click", function() {
+    var id = $(this).attr('ref');
+    $.ajax({
+      url: "/admin/discussion/delete",
+      type: "POST",
+      cache: false,
+      data: {id:id},
+      error: function(error) {
+        popAlert('Fail to delete the comment.', 'alert-danger'); 
+      },
+      success: function(response) {
+        if(response.status) {
+          popAlert('The comment has been deleted.', 'alert-success');
+
+          $("#comment-"+id)
+          .find('td')
+          .wrapInner('<div style="display: block;" />')
+          .parent()
+          .find('td > div')
+          .slideUp(700, function(){
+            $(this).parent().parent().remove();
+          });
+        } else {
+          popAlert('Fail to delete the comment.', 'alert-danger');
+        }
+      }
+    });
+  });
+
+  $(".btn-show-subhead").on("click", function() {
+    var $field = $(this).parent().parent();
+    var data = {
+      id: $field.attr('ref'),
+      status: $(this).attr('ref')
+    }
+
+    $.ajax({
+      url: "/admin/events/updateonmenu",
+      type: "POST",
+      cache: false,
+      data: data,
+      error: function(error) {
+        popAlert('Fail to update the event.', 'alert-danger');
+      },
+      success: function(response) {
+        if(response.status) {
+          location.reload();
+        } else {
+          alert('Fail to update an event.');
+        }
+      }
+    });
+  });
+
+  
+
+
+
+
 
 });
 

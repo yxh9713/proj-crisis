@@ -9,8 +9,8 @@ class Config
      * Database host
      * @var string
      */
+    // const DB_HOST = 'nesightdigitalcom.ipagemysql.com';
     const DB_HOST = 'localhost';
-
     /**
      * Database name
      * @var string

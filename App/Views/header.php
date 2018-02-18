@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,800" rel="stylesheet">
     <link href="/public/css/global.css" rel="stylesheet" type="text/css" />
     <?php if($title === 'Discussion'): ?><link href="/public/css/main.css" rel="stylesheet" type="text/css" /><?php endif; ?>
+    <?php if($title === 'Contact'): ?><link href="/public/css/contact.css" rel="stylesheet" type="text/css" /><?php endif; ?>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="/public/js/main.js"></script>
   </head>
@@ -24,7 +25,7 @@
           <div class="topnav" id="myTopnav">
             <a href="/">Home</a>
             <a href="/about">About</a>
-            <a href="/discussion">Discussion</a>
+            <a href="/discussion/page/1">Discussion</a>
             <a href="/contact">Contact</a>
             <a href="javascript:void(0);" style="font-size:25px;" class="icon" onclick="myFunction()">&#9776;</a>
           </div>

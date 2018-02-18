@@ -32,6 +32,10 @@
         <label for="description">Description</label>
         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
       </div>
+      <div class="form-group">
+        <input type="checkbox" class="form-check-input" id="on_menu" name="on_menu" value="1">
+        <label class="form-check-label" for="on_menu"> Show this event on side menu</label>
+      </div>
       <button type="submit" class="btn btn-primary">create</button>
     </form>
     <div id="alert" class="hide alert alert-success"></div>
