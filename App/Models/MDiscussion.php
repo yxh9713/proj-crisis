@@ -22,6 +22,14 @@ class MDiscussion extends \Core\Model
       }
     }
 
+    // $secret="6LcRFEcUAAAAAPIi95CVn-xeuMvCbGmZQPhhL4Rt";
+    // $response = $params["captcha"];
+    // $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
+    // $captcha_success = json_decode($verify);
+    // if ($captcha_success->success==false) {
+    //   $errorMessage[] = 'Please reload the page to identify You are Not a Robot.';
+    // }
+
     if(count($errorMessage)) {
       return array(
         "status" => false, 

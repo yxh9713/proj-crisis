@@ -14,7 +14,6 @@
       <label for="country">Select a country</label>
       <select class="form-control" id="country" name="country">
       <?php foreach ($countries as $country): ?>
-      <?php var_dump($countryId,$country['id']); ?>
         <option value="<?php echo $country['id'] ?>" <?php if($countryId==$country['id']) echo 'selected'; ?>><?php echo $country['name'] ?></option>
       <?php endforeach; ?>
       </select>

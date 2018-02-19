@@ -9,7 +9,10 @@
     <title>Crisis Chronology</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,600,800" rel="stylesheet">
     <link href="/public/css/global.css" rel="stylesheet" type="text/css" />
-    <?php if($title === 'Discussion'): ?><link href="/public/css/main.css" rel="stylesheet" type="text/css" /><?php endif; ?>
+    <?php if($title === 'Discussion'): ?>
+      <link href="/public/css/main.css" rel="stylesheet" type="text/css" />
+      <!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
+    <?php endif; ?>
     <?php if($title === 'Contact'): ?><link href="/public/css/contact.css" rel="stylesheet" type="text/css" /><?php endif; ?>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="/public/js/main.js"></script>

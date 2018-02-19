@@ -6,10 +6,9 @@ use \Core\View;
 use App\Models\Country;
 use App\Models\Event;
 use App\Models\MDiscussion;
+use App\Models\Pin;
 /**
  * Home controller
- *
- * PHP version 5.4
  */
 class Home extends \Core\Controller
 {
@@ -46,6 +45,7 @@ class Home extends \Core\Controller
      */
     public function indexAction()
     {
+        $this->renderData['pins'] = Pin::getPins();
         View::render('Home/index.php', $this->renderData);
     }
 

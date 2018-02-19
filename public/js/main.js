@@ -38,6 +38,8 @@ $(document).ready(function() {
     e.preventDefault();
     var self = $(this);
     var data = $(this).serialize();
+    // data += '&captcha=' + grecaptcha.getResponse();
+
     $.ajax({
       url: "/discussion/post",
       type: "POST",

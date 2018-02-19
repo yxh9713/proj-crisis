@@ -20,6 +20,13 @@
       </ul>
     </li>
     <li>
+      <a href="#PinsSubMenu">Pins</a>
+      <ul class="list-unstyled" id="PinsSubMenu">
+        <li><a href="/admin/pins/add">Create</a></li>
+        <li><a href="/admin/pins/edit">Edit</a></li>
+      </ul>
+    </li>
+    <li>
       <a href="#DiscussionSubMenu">Discussion</a>
       <ul class="list-unstyled" id="DiscussionSubMenu">
         <li><a href="/admin/discussion/edit">Edit</a></li>

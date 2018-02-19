@@ -25,17 +25,8 @@
               </h2>
             </header>
             </br>
-            <footer class="post-info">
-              <abbr class="published" title="2017-10-30T14:07:00-07:00">
-              30th October 2017
-              </abbr>
-              <address class="vcard author">
-                By <a class="url fn" href="about.shtml">Walter Bode</a>
-              </address>
-            </footer>
             <div class="entry-content">
-              <p>This Discussion page is for any comments you have on the annotations, whether questions, opinions, or contribution to the topic. All comments are welcome!
-              </p>
+              <p>The Crisis Chronology welcomes comments and questions. Be aware that the Crisis Chronology attempts to be fact-based as much as possible in every respect. However, the Crisis Chronology is aware that every event in the world can be seen from multiple perspectives. Opinions are welcome if they add to the understanding of events, but please refrain from partisan politics for its own sake, attacks on others who comment, or offensive language of any kind. The Discussion Page is moderated, and inappropriate comments will be either edited or deleted without discussion. Whenever possible, identify the source of your information so that others can refer to it.</p>
             </div>
           </article>
 
@@ -80,8 +71,9 @@
               <label for="email" class="required">Your email*</label>
               <input type="email" name="email" id="email" value="" tabindex="2" required="required">
               <label for="comment" class="required">Your Comment*</label>
-              <textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
+              <textarea name="comment" id="comment" rows="10" tabindex="4" required="required"></textarea>
               <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
+              <!-- <div class="g-recaptcha" data-sitekey="6LcRFEcUAAAAANiR2edjW9vz1g2CADBUsevUpJW2"></div> -->
               <input name="submit" type="submit" value="Submit" />
             </form>
             <div id="alert" class="alert"></div>

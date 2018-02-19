@@ -249,6 +249,58 @@ $(document).ready(function () {
     });
   });
 
+  $("#new-pin").on("submit", function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: "/admin/pins/post",
+      type: "POST",
+      cache: false,
+      data: $("#new-pin").serialize(),
+      dataType: 'json',
+      error: function(error) {
+        popAlert(error.responseJSON.message, 'alert-danger');
+      },
+      success: function(response) {
+        if(response.status) {
+          popAlert('The pin has been created', 'alert-success');
+          $("input[type=text]").val('');
+        } else {
+          popAlert('Fail to create a pin.', 'alert-danger');
+        }
+      }
+    });    
+  });
+
+  $(".delete-pin").on("click", function(e) {
+    e.preventDefault();
+    var $field = $(this).parent().parent();
+    var data = {
+      id: $(this).attr('ref')
+    }
+
+    $.ajax({
+      url: "/admin/pins/delete",
+      type: "POST",
+      cache: false,
+      data: data,
+      dataType: 'json',
+      error: function(error) {
+        popAlert(error.responseJSON.message, 'alert-danger');
+      },
+      success: function(response) {
+        if(response.status) {
+          popAlert('The pin has been deleted', 'alert-success');
+          $field.remove();
+        } else {
+          popAlert('Fail to create a pin.', 'alert-danger');
+        }
+      }
+    });    
+  });
+
+  
+
   
 
 

@@ -53,6 +53,7 @@ label {font-size: 1.1em; height: 25px; line-height: 25px;}
 		font-family: inherit;
 		font-size: inherit;
 		padding: .3em 2em;
+		margin: .5em 0;
 	}
 	
 	/* Textarea */
